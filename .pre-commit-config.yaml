@@ -1,10 +1,9 @@
-default_stages: [commit]
-
 default_language_version:
   python: python3.12
 
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
+  # General code hygiene tools
+  - repo: https://github.com/pre-commit/pre-commit-hooks 
     rev: v4.5.0
     hooks:
       - id: trailing-whitespace
@@ -19,18 +18,20 @@ repos:
       - id: detect-private-key
       - id: requirements-txt-fixer
 
-  # Run the Ruff linter.
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.5
+  # Python linter and formatter
+  - repo: https://github.com/astral-sh/ruff-pre-commit 
+    rev: v0.11.2
     hooks:
-      # Linter
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
-      # Formatter
+        language_version: python3.12
+        types_or: [python, pyi]
+
       - id: ruff-format
+        language_version: python3.12
+        types_or: [python, pyi]
 
-
-# sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
+# CI settings for auto-updates
 ci:
   autoupdate_schedule: weekly
   skip: []
