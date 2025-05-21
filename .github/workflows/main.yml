@@ -30,6 +30,19 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
 
+      - name: Check if changes were made
+        id: changes
+        run: |
+          echo "::set-output name=changed::$(git diff-index --quiet HEAD -- || echo "true")"
+
+      - name: Commit and Push Changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions@example.com"
+          git config --local user.name "GitHub Actions"
+          git diff-index --quiet HEAD || git commit -am "Apply pre-commit auto-fixes"
+          git push
+
   angular_tests:
     runs-on: ubuntu-latest
     defaults:
