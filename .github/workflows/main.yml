@@ -93,10 +93,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Install EB CLI
+      - name: Install EB CLI via pip
         run: |
-          curl -s "https://s3.amazonaws.com/aws-cli/ebcli-artifacts/ebcli-latest " | tar xvfz -
-          sudo mv eb-linux_amd64 /usr/local/bin/eb
+          pip install awsebcli --upgrade
           eb --version
 
       - name: Deploy Django App to Elastic Beanstalk
