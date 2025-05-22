@@ -27,9 +27,8 @@ jobs:
           pip install black flake8 pylint pre-commit
 
       - name: Run Pre-commit Hooks
-        uses: pre-commit/action@v3
+        uses: pre-commit/action@v4  # Use the latest version
         with:
-          # Show diff of changes made by formatters
           extra_args: --show-diff-on-failure
 
   angular_tests:
