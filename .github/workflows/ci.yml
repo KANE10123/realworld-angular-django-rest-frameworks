@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI
 
 # Enable Buildkit for faster Docker builds
 env:
@@ -7,10 +7,10 @@ env:
 
 on:
   pull_request:
-    branches: ['main', 'deploy']
+    branches: ['master', 'deploy']
 
   push:
-    branches: ['main', 'deploy']
+    branches: ['master', 'deploy']
 
 concurrency:
   group: ${{ github.head_ref || github.run_id }}
@@ -31,7 +31,7 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
         with:
-          verbose: false  # Show detailed output for debugging
+          extra_args: --verbose  # Enable verbose output for debugging
 
   angular_tests:
     runs-on: ubuntu-latest
