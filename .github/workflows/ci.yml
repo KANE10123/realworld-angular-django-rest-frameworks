@@ -31,7 +31,7 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
         with:
-          verbose: true  # Show detailed output for debugging
+          verbose: false  # Show detailed output for debugging
 
   angular_tests:
     runs-on: ubuntu-latest
