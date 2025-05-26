@@ -86,7 +86,9 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS='http://localhost:3000'
+CORS_ALLOWED_ORIGINS= [
+    'http://localhost:3000'
+]
 #CORS_URLS_REGEX = r"^/api/.*$"
 
 
